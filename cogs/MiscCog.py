@@ -1,5 +1,6 @@
 from discord.ext import commands
 from spacify import spacify
+import requests
 
 
 class MiscCog(commands.Cog):
@@ -15,3 +16,8 @@ class MiscCog(commands.Cog):
         await ctx.channel.send(spacify(msg))
 
 
+    @commands.command(name="verse-of-the-day", aliases=["votd", "VOTD", "bible_me"], usage="!verse-of-the-day", description="its in the name")
+    async def bible(self, ctx):
+        resp = requests.get("https://beta.ourmanna.com/api/v1/get/?format=json")
+        verse = f"\"{resp.json()['verse']['details']['text']}\" - {resp.json()['verse']['details']['reference']} {resp.json()['verse']['details']['version']}"
+        await ctx.send(verse)

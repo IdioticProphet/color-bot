@@ -16,5 +16,5 @@ if __name__ == "__main__":
     bot = DiscordBot("!")
     bot.add_cog(ColorCog(bot))
     bot.add_cog(MiscCog(bot))
-    bot.run(open("token", "r").read())
+    bot.run(open("/color-bot/token", "r").read())
 
